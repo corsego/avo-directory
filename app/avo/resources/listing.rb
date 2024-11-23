@@ -10,5 +10,9 @@ class Avo::Resources::Listing < Avo::BaseResource
     field :id, as: :id
     field :url, as: :text
     field :categories, as: :has_many
+    field :categories, as: :has_many, through: :category_listings,
+      attach_scope: lambda {
+        query.where.not(id: parent.category_listings.select(:category_id))
+      }
   end
 end
