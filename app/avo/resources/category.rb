@@ -9,5 +9,6 @@ class Avo::Resources::Category < Avo::BaseResource
     field :id, as: :id
     field :name, as: :text
     field :description, as: :textarea
+    field :listings, as: :has_many
   end
 end

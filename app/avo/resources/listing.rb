@@ -1,4 +1,5 @@
 class Avo::Resources::Listing < Avo::BaseResource
+  self.title = :url
   # self.includes = []
   # self.attachments = []
   # self.search = {
@@ -8,5 +9,6 @@ class Avo::Resources::Listing < Avo::BaseResource
   def fields
     field :id, as: :id
     field :url, as: :text
+    field :categories, as: :has_many
   end
 end
