@@ -3,7 +3,10 @@ class Avo::Resources::Listing < Avo::BaseResource
   # self.includes = []
   # self.attachments = []
   self.search = {
-    query: -> { query.ransack(url_cont: params[:q], m: "or").result(distinct: false) }
+    query: -> { query.ransack(
+      url_cont: params[:q],
+      payload_cont: params[:q],
+      m: "or").result(distinct: false) }
   }
 
   def fields

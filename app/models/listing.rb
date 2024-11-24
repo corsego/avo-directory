@@ -5,8 +5,12 @@ class Listing < ApplicationRecord
   has_many :categories, through: :category_listings
   has_one_attached :cover_image
 
+  ransacker :payload do
+    Arel.sql("payload")
+  end
+
   def self.ransackable_attributes(auth_object = nil)
-    %w[url]
+    %w[url payload]
   end
 
   def self.ransackable_associations(auth_object = nil)
