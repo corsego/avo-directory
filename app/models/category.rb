@@ -11,4 +11,7 @@ class Category < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     %w[]
   end
+
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 end

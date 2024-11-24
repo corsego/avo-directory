@@ -1,5 +1,15 @@
 class Avo::Resources::Listing < Avo::BaseResource
   self.title = :clean_url
+
+  self.find_record_method = -> {
+    if id.is_a?(Array)
+      query.where(slug: id)
+    else
+      # We have to add .friendly to the query
+      query.friendly.find id
+    end
+  }
+
   # self.includes = []
   # self.attachments = []
   self.search = {
@@ -10,7 +20,7 @@ class Avo::Resources::Listing < Avo::BaseResource
   }
 
   def fields
-    field :id, as: :id
+    # field :id, as: :id
     field :logo, as: :external_image do
       record.payload&.dig("favicon_url")
     rescue

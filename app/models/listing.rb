@@ -26,4 +26,7 @@ class Listing < ApplicationRecord
   def clean_url
     url.gsub(/(https?:\/\/)|(www\.)/, "").gsub(/\/$/, "")
   end
+
+  extend FriendlyId
+  friendly_id :url, use: :slugged
 end
