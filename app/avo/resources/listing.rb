@@ -13,8 +13,14 @@ class Avo::Resources::Listing < Avo::BaseResource
     rescue
       nil
     end
+    field :meta_title, as: :text do
+      record.payload&.dig("page_title")
+    end
+    field :meta_description, as: :text do
+      record.payload&.dig("meta_description")
+    end
     field :url, as: :text
-    field :payload, as: :text, hide_on: [:index]
+    # field :payload, as: :text, hide_on: [:index]
     field :categories, as: :has_many, through: :category_listings,
       attach_scope: lambda {
         query.where.not(id: parent.category_listings.select(:category_id))
