@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_23_164157) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_24_131842) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -31,6 +31,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_23_164157) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "payload"
   end
 
   add_foreign_key "category_listings", "categories"
