@@ -50,4 +50,15 @@ class Avo::Resources::Listing < Avo::BaseResource
       end
     }
   }
+
+  self.default_view_type = :grid
+  self.grid_view = {
+    card: -> do
+      {
+        cover_url: record.payload&.dig("og_image_url"),
+        title: record.payload&.dig("page_title"),
+        body: record.payload&.dig("meta_description"),
+      }
+    end
+  }
 end
