@@ -20,6 +20,7 @@ class Avo::Resources::Listing < Avo::BaseResource
       record.payload&.dig("meta_description")
     end
     field :url, as: :text
+    field :cover_image, as: :file, is_image: true, accept: "image/*", display_filename: false
     # field :payload, as: :text, hide_on: [:index]
     field :categories, as: :has_many, through: :category_listings,
       attach_scope: lambda {
@@ -52,7 +53,7 @@ class Avo::Resources::Listing < Avo::BaseResource
         "/icon.png"
       else
         # We have a record so we can reference it's cover_photo
-        record.payload&.dig("og_image_url") || "/icon.png"
+        record.cover_image_for_display
       end
     }
   }
@@ -61,7 +62,7 @@ class Avo::Resources::Listing < Avo::BaseResource
   self.grid_view = {
     card: -> do
       {
-        cover_url: record.payload&.dig("og_image_url"),
+        cover_url: record.cover_image_for_display,
         title: record.payload&.dig("page_title"),
         body: record.payload&.dig("meta_description"),
       }
