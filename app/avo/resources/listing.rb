@@ -1,5 +1,5 @@
 class Avo::Resources::Listing < Avo::BaseResource
-  self.title = :url
+  self.title = :clean_url
   # self.includes = []
   # self.attachments = []
   self.search = {

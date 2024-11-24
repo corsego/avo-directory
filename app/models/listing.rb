@@ -22,4 +22,8 @@ class Listing < ApplicationRecord
 
     payload&.dig("og_image_url") || "/icon.png"
   end
+
+  def clean_url
+    url.gsub(/(https?:\/\/)|(www\.)/, "").gsub(/\/$/, "")
+  end
 end
