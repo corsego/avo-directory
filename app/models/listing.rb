@@ -18,7 +18,7 @@ class Listing < ApplicationRecord
   end
 
   def cover_image_for_display
-    return cover_image if cover_image.attached?
+    return cover_image.url if cover_image.attached?
 
     payload&.dig("og_image_url") || "/icon.png"
   end
