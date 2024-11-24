@@ -30,6 +30,7 @@ class Avo::Resources::Listing < Avo::BaseResource
 
   def actions
     action Avo::Actions::UrlCrawler
+    action Avo::Actions::RecordUrlScreenshot
   end
 
   self.profile_photo = {
