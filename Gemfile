@@ -63,6 +63,6 @@ group :test do
 end
 gem "avo", ">= 3.2"
 gem 'ransack'
-gem "ferrum", "~> 0.15"
+gem "ferrum", "~> 0.16"
 
 gem "friendly_id", "~> 5.5"
